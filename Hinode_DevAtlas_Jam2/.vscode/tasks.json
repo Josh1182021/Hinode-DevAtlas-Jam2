@@ -1,0 +1,720 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 Mac Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 Mac DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 Mac Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Shipping",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Shipping",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 Mac Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Shipping",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Test",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Test",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 Mac Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 Mac Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"Mac",
+				"Test",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 IOS Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 IOS DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 IOS Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Shipping",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Shipping",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 IOS Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Shipping",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Test",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Test",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2 IOS Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2 IOS Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2",
+				"IOS",
+				"Test",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2Editor Mac Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"Debug",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2Editor Mac DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"DebugGame",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Hinode_DevAtlas_Jam2Editor Mac Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		},
+		{
+			"label": "Hinode_DevAtlas_Jam2Editor Mac Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"Hinode_DevAtlas_Jam2Editor",
+				"Mac",
+				"Development",
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_4.25"
+			}
+		}
+	]
+}
