@@ -5,6 +5,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 // Sets default values
@@ -24,6 +25,8 @@ ASapphireMainCharacter::ASapphireMainCharacter()
 
 	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	SkeletalMesh->SetupAttachment(CapsuleComponent);
+
+	MovementComponent = CreateDefaultSubobject<UCharacterMovementComponent>(TEXT("Movement Component"));
 }
 
 // Called when the game starts or when spawned
@@ -45,5 +48,15 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ASapphireMainCharacter::MoveForward);
+	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ASapphireMainCharacter::MoveRight);
 }
 
+void ASapphireMainCharacter::MoveForward(float AxisValue) 
+{
+	AddActorLocalOffset(GetActorForwardVector() * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+}
+void ASapphireMainCharacter::MoveRight(float AxisValue) 
+{
+	AddActorLocalOffset(GetActorRightVector() * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+}
