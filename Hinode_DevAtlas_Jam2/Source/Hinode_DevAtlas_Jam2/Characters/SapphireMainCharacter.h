@@ -37,12 +37,18 @@ private:
 	class USkeletalMeshComponent* SkeletalMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class UCharacterMovementComponent* MovementComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
+	class USpotLightComponent* LightSource;
 	//End of Character Components
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Speed = 300.f;
-
-
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
+	float Battery = 100.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
+	float LargestLightAngle = 50.f;
+
 };

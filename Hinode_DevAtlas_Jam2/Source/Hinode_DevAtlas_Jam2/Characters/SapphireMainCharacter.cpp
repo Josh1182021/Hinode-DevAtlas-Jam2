@@ -4,6 +4,7 @@
 #include "SapphireMainCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SpotLightComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -27,6 +28,9 @@ ASapphireMainCharacter::ASapphireMainCharacter()
 	SkeletalMesh->SetupAttachment(CapsuleComponent);
 
 	MovementComponent = CreateDefaultSubobject<UCharacterMovementComponent>(TEXT("Movement Component"));
+
+	LightSource = CreateDefaultSubobject<USpotLightComponent>(TEXT("Spot Light"));
+	LightSource->SetupAttachment(CapsuleComponent);
 }
 
 // Called when the game starts or when spawned
@@ -41,6 +45,14 @@ void ASapphireMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (Battery > 0.f)
+	{
+		Battery = Battery - (1.f) * DeltaTime;
+	}
+	LightSource->SetOuterConeAngle((Battery/100) * LargestLightAngle);
+	LightSource->SetInnerConeAngle((Battery/100) * LargestLightAngle + 10);
+	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery)
+
 }
 
 // Called to bind functionality to input
@@ -54,9 +66,9 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
 {
-	AddActorLocalOffset(GetActorForwardVector() * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+	AddActorLocalOffset(FVector(1, 0, 0) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
 void ASapphireMainCharacter::MoveRight(float AxisValue) 
 {
-	AddActorLocalOffset(GetActorRightVector() * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+	AddActorLocalOffset(FVector(0, 1, 0) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
