@@ -7,6 +7,7 @@
 #include "Components/SpotLightComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Hinode_DevAtlas_Jam2/Controllers/SapphirePlayerController.h"
 
 
 // Sets default values
@@ -27,7 +28,8 @@ ASapphireMainCharacter::ASapphireMainCharacter()
 	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	SkeletalMesh->SetupAttachment(CapsuleComponent);
 
-	MovementComponent = CreateDefaultSubobject<UCharacterMovementComponent>(TEXT("Movement Component"));
+	MuzzlePoint = CreateDefaultSubobject<USceneComponent>(TEXT("Muzzle Point"));
+	MuzzlePoint->SetupAttachment(SkeletalMesh);
 
 	LightSource = CreateDefaultSubobject<USpotLightComponent>(TEXT("Spot Light"));
 	LightSource->SetupAttachment(CapsuleComponent);
@@ -45,14 +47,8 @@ void ASapphireMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (Battery > 0.f)
-	{
-		Battery = Battery - (1.f) * DeltaTime;
-	}
-	LightSource->SetOuterConeAngle((Battery/100) * LargestLightAngle);
-	LightSource->SetInnerConeAngle((Battery/100) * LargestLightAngle + 10);
-	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery)
-
+	HandleBatteryTick(DeltaTime);
+	PointAtMouse();
 }
 
 // Called to bind functionality to input
@@ -71,4 +67,57 @@ void ASapphireMainCharacter::MoveForward(float AxisValue)
 void ASapphireMainCharacter::MoveRight(float AxisValue) 
 {
 	AddActorLocalOffset(FVector(0, 1, 0) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+}
+
+void ASapphireMainCharacter::PointAtMouse() 
+{
+    if (Controller == nullptr)
+    {
+        UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::PointAtMouse has no reference to Controller."));
+		return;
+	}
+	ASapphirePlayerController* PlayerController = Cast<ASapphirePlayerController>(Controller);
+	if (PlayerController == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("ASapphireMainCharacter::PointAtMouse has no valid reference to PlayerController."));
+		return;
+	}
+	FVector CharacterPosition = this->GetActorLocation();
+	FRotator CharacterRotation = this->GetActorRotation();
+
+	// FVector MouseLocation, MouseDirection;
+	// PlayerController->DeprojectMousePositionToWorld(MouseLocation, MouseDirection);
+	// FRotator TargetRotation = FVector(CharacterPosition - MouseLocation).Rotation();
+	// FRotator AdjustedRotation = FRotator(0, TargetRotation.Yaw, 0);
+
+	FHitResult MousePositionInWorld;
+
+	bool bDidHit = PlayerController->GetHitResultUnderCursor(ECC_Visibility, true, MousePositionInWorld);
+
+	if(!bDidHit)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("ASapphireMainCharacter::PointAtMouse could not trace mouse hit."));
+		return;
+	}
+
+	FRotator TargetRotation = FVector((MousePositionInWorld.Location) - CharacterPosition).Rotation();
+	FRotator AdjustedRotation = FRotator(0, TargetRotation.Yaw - 90, 0);
+
+	SkeletalMesh->SetWorldRotation(AdjustedRotation);
+
+	// UE_LOG(LogTemp, Warning, TEXT("MouseLocation: %s"), *MouseLocation.ToString());
+	// UE_LOG(LogTemp, Warning, TEXT("TargetRotation: %s"), *TargetRotation.ToString());
+	// UE_LOG(LogTemp, Warning, TEXT("AdjustedRotation: %s"), *AdjustedRotation.ToString());
+}
+
+void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime) 
+{
+	if (Battery > 0.f)
+	{
+		Battery = Battery - (1.f) * DeltaTime;
+	}
+	LightSource->SetOuterConeAngle((Battery/100) * LargestLightAngle);
+	LightSource->SetInnerConeAngle((Battery/100) * LargestLightAngle + LightConeDelta);
+	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery)
+	
 }
