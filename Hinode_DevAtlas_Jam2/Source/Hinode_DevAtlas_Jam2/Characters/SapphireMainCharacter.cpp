@@ -76,6 +76,7 @@ void ASapphireMainCharacter::PointAtMouse()
         UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::PointAtMouse has no reference to Controller."));
 		return;
 	}
+
 	ASapphirePlayerController* PlayerController = Cast<ASapphirePlayerController>(Controller);
 	if (PlayerController == nullptr)
 	{
@@ -83,12 +84,6 @@ void ASapphireMainCharacter::PointAtMouse()
 		return;
 	}
 	FVector CharacterPosition = this->GetActorLocation();
-	FRotator CharacterRotation = this->GetActorRotation();
-
-	// FVector MouseLocation, MouseDirection;
-	// PlayerController->DeprojectMousePositionToWorld(MouseLocation, MouseDirection);
-	// FRotator TargetRotation = FVector(CharacterPosition - MouseLocation).Rotation();
-	// FRotator AdjustedRotation = FRotator(0, TargetRotation.Yaw, 0);
 
 	FHitResult MousePositionInWorld;
 
@@ -104,10 +99,11 @@ void ASapphireMainCharacter::PointAtMouse()
 	FRotator AdjustedRotation = FRotator(0, TargetRotation.Yaw - 90, 0);
 
 	SkeletalMesh->SetWorldRotation(AdjustedRotation);
+}
 
-	// UE_LOG(LogTemp, Warning, TEXT("MouseLocation: %s"), *MouseLocation.ToString());
-	// UE_LOG(LogTemp, Warning, TEXT("TargetRotation: %s"), *TargetRotation.ToString());
-	// UE_LOG(LogTemp, Warning, TEXT("AdjustedRotation: %s"), *AdjustedRotation.ToString());
+float ASapphireMainCharacter::GetBatteryPercent() 
+{
+	return Battery/100.f;
 }
 
 void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime) 
@@ -118,6 +114,6 @@ void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime)
 	}
 	LightSource->SetOuterConeAngle((Battery/100) * LargestLightAngle);
 	LightSource->SetInnerConeAngle((Battery/100) * LargestLightAngle + LightConeDelta);
-	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery)
+	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
 	
 }
