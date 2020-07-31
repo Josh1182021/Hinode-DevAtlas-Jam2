@@ -23,6 +23,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void MainCharacterDied();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -70,11 +72,11 @@ private:
 
 	//End of Light
 
-	//Shooting
+	//Combat
 	void Fire();
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"));
 	TSubclassOf<AProjectileBase> ProjectileClass;
-	bool CanFire = true;
-	//End of Shooting
-
+	bool IsCharging = false;
+	void CheckIfDead();
+	//End of Combat
 };
