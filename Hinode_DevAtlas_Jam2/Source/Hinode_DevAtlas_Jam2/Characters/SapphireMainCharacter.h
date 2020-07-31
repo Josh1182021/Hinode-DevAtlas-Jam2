@@ -61,4 +61,5 @@ private:
 	void HandleBatteryTick(float DeltaTime);
 	//End of Light
 
+	void Fire();
 };

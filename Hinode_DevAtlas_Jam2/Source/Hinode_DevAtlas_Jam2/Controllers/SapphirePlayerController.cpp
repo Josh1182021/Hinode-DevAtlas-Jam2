@@ -5,7 +5,7 @@
 
 ASapphirePlayerController::ASapphirePlayerController()
 {
-    PrimaryActorTick.bCanEverTick = false;
+    PrimaryActorTick.bCanEverTick = true;
 
 }
 
@@ -13,9 +13,8 @@ ASapphirePlayerController::ASapphirePlayerController()
 void ASapphirePlayerController::BeginPlay()
 {
     Super::BeginPlay();
-    
-    bShowMouseCursor = true;
 
+    bShowMouseCursor = true;
 }
 
 
