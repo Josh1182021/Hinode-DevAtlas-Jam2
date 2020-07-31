@@ -58,15 +58,17 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ASapphireMainCharacter::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ASapphireMainCharacter::MoveRight);
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ASapphireMainCharacter::Fire);
+
 }
 
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
 {
-	AddActorLocalOffset(FVector(1, 0, 0) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+	AddActorLocalOffset(FVector(1.f, 0.f, 0.f) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
 void ASapphireMainCharacter::MoveRight(float AxisValue) 
 {
-	AddActorLocalOffset(FVector(0, 1, 0) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
+	AddActorLocalOffset(FVector(0.f, 1.f, 0.f) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
 
 void ASapphireMainCharacter::PointAtMouse() 
@@ -96,7 +98,7 @@ void ASapphireMainCharacter::PointAtMouse()
 	}
 
 	FRotator TargetRotation = FVector((MousePositionInWorld.Location) - CharacterPosition).Rotation();
-	FRotator AdjustedRotation = FRotator(0, TargetRotation.Yaw - 90, 0);
+	FRotator AdjustedRotation = FRotator(0.f, TargetRotation.Yaw - 90.f, 0.f);
 
 	SkeletalMesh->SetWorldRotation(AdjustedRotation);
 }
@@ -110,10 +112,15 @@ void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime)
 {
 	if (Battery > 0.f)
 	{
-		Battery = Battery - (1.f) * DeltaTime;
+		Battery = Battery - ((100.f/60.f) * DeltaTime);
 	}
-	LightSource->SetOuterConeAngle((Battery/100) * LargestLightAngle);
-	LightSource->SetInnerConeAngle((Battery/100) * LargestLightAngle + LightConeDelta);
+	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
+	LightSource->SetInnerConeAngle((Battery/100.f) * LargestLightAngle + LightConeDelta);
 	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
 	
+}
+
+void ASapphireMainCharacter::Fire() 
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fire"));
 }
