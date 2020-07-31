@@ -2,6 +2,8 @@
 
 
 #include "SapphireLv1Enemy.h"
+#include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ASapphireLv1Enemy::ASapphireLv1Enemy()
@@ -11,11 +13,17 @@ ASapphireLv1Enemy::ASapphireLv1Enemy()
 
 }
 
+void ASapphireLv1Enemy::Died() 
+{
+	Destroy();
+}
+
 // Called when the game starts or when spawned
 void ASapphireLv1Enemy::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASapphireLv1Enemy::OnHit);
 }
 
 // Called every frame
@@ -32,3 +40,13 @@ void ASapphireLv1Enemy::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 }
 
+void ASapphireLv1Enemy::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit) 
+{
+	if (OtherActor == nullptr || OtherActor == this)
+	{
+		return;
+	}
+	UGameplayStatics::ApplyDamage(OtherActor, Damage, Controller, this, DamageType);
+
+	Destroy();
+}
