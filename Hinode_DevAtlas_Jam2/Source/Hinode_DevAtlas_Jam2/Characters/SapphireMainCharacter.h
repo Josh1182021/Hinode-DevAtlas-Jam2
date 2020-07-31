@@ -56,6 +56,9 @@ private:
 	float LargestLightAngle = 50.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
 	float LightConeDelta = 10.f;
+	UFUNCTION(BlueprintPure)
+	float GetBatteryPercent();
 	void HandleBatteryTick(float DeltaTime);
 	//End of Light
+
 };
