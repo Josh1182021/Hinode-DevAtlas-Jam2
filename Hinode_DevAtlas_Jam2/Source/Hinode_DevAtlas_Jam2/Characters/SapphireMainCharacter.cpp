@@ -9,7 +9,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Hinode_DevAtlas_Jam2/Controllers/SapphirePlayerController.h"
 #include "Hinode_DevAtlas_Jam2/Actors/ProjectileBase.h"
+#include "Hinode_DevAtlas_Jam2/GameModes/SapphireGameMode.h"
 #include "Math/UnrealMathUtility.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -51,6 +53,9 @@ void ASapphireMainCharacter::Tick(float DeltaTime)
 
 	HandleBatteryTick(DeltaTime);
 	PointAtMouse();
+	CheckIfDead();
+
+	// UE_LOG(LogTemp, Log, TEXT("Can Charge: %s"), IsCharging ? TEXT("true") : TEXT("false"));
 }
 
 // Called to bind functionality to input
@@ -66,12 +71,25 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 }
 
+void ASapphireMainCharacter::MainCharacterDied() 
+{
+	UE_LOG(LogTemp, Warning, TEXT("called by gamemode"));
+}
+
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
 {
+	if (IsCharging == true)
+	{
+		return;
+	}
 	AddActorLocalOffset(FVector(1.f, 0.f, 0.f) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
 void ASapphireMainCharacter::MoveRight(float AxisValue) 
 {
+	if (IsCharging == true)
+	{
+		return;
+	}
 	AddActorLocalOffset(FVector(0.f, 1.f, 0.f) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
 
@@ -114,19 +132,19 @@ float ASapphireMainCharacter::GetBatteryPercent()
 
 void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime) 
 {
-	if (Battery > 0.f)
+	if (Battery >= 1.f)
 	{
 		Battery = Battery - FMath::Clamp(((100.f/TotalSecondsInBattery) * DeltaTime), 0.f, 100.f);
 	}
 	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
 	LightSource->SetInnerConeAngle((Battery/100.f) * LargestLightAngle + LightConeDelta);
-	UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
+	// UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
 	
 }
 
 void ASapphireMainCharacter::Charging() 
 {
-	CanFire = false;
+	IsCharging = true;
 	UE_LOG(LogTemp, Warning, TEXT("Charging"));
 	if (Battery <= 100.f && Battery >= 0.f)
 	{
@@ -140,12 +158,12 @@ void ASapphireMainCharacter::Charging()
 
 void ASapphireMainCharacter::DoneCharging() 
 {
-	CanFire = true;
+	IsCharging = false;
 }
 
 void ASapphireMainCharacter::Fire() 
 {
-	if (CanFire == false)
+	if (IsCharging == true)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Can't fire right now because we are charging."));
 		return;
@@ -166,5 +184,24 @@ void ASapphireMainCharacter::Fire()
 			AProjectileBase* TempProjectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, ProjectileSpawnPoint->GetComponentLocation(), ProjectileSpawnPointRotation);
 			TempProjectile->SetOwner(this);
 		}
+	}
+}
+
+void ASapphireMainCharacter::CheckIfDead() 
+{
+	if (Battery >= 2.f)
+	{
+		return;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Died."));
+		ASapphireGameMode* GameModeRef = Cast<ASapphireGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+		if (GameModeRef == nullptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::CheckIfDead has no referencet to Sapphire game mode."));
+			return;
+		}
+		GameModeRef->ActorDied(this);
 	}
 }

@@ -13,5 +13,7 @@ UCLASS()
 class HINODE_DEVATLAS_JAM2_API ASapphireGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	void ActorDied(AActor* DeadActor);
 };
