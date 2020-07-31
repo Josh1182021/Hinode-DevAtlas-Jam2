@@ -120,7 +120,7 @@ void ASapphireMainCharacter::PointAtMouse()
 	}
 
 	FRotator TargetRotation = FVector((MousePositionInWorld.Location) - CharacterPosition).Rotation();
-	FRotator AdjustedRotation = FRotator(0.f, TargetRotation.Yaw - 90.f, 0.f);
+	FRotator AdjustedRotation = FRotator(0.f, TargetRotation.Yaw + 180.f, 0.f);
 
 	SkeletalMesh->SetWorldRotation(AdjustedRotation);
 }
@@ -137,8 +137,9 @@ void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime)
 		Battery = Battery - FMath::Clamp(((100.f/TotalSecondsInBattery) * DeltaTime), 0.f, 100.f);
 	}
 	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
-	LightSource->SetInnerConeAngle((Battery/100.f) * LargestLightAngle + LightConeDelta);
+	LightSource->SetInnerConeAngle((Battery/100.f) * (LargestLightAngle - LightConeDelta));
 	// UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
+	// UE_LOG(LogTemp, Warning, TEXT("%f"), ((Battery/100.f) * LargestLightAngle));
 	
 }
 
@@ -150,16 +151,23 @@ void ASapphireMainCharacter::Charging()
 	{
 		Battery = Battery + FMath::Clamp(((100.f/TotalSecondsInBattery) * GetWorld()->GetDeltaSeconds() * ChargingMultiplier), 0.f, 100.f);
 	}
-	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
-	LightSource->SetInnerConeAngle((Battery/100.f) * LargestLightAngle + LightConeDelta);
+	// LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
+	// LightSource->SetInnerConeAngle((Battery/100.f) * LargestLightAngle - LightConeDelta);
 	// UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
-
+	// UE_LOG(LogTemp, Warning, TEXT("%f"), ((Battery/100.f) * LargestLightAngle));
 }
 
 void ASapphireMainCharacter::DoneCharging() 
 {
 	IsCharging = false;
 }
+
+float ASapphireMainCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) 
+{
+	Battery = Battery - Damage;
+	return Damage;
+}
+
 
 void ASapphireMainCharacter::Fire() 
 {

@@ -57,19 +57,20 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
 	float Battery = 100.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float LargestLightAngle = 50.f;
+	float LargestLightAngle = 90.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float LightConeDelta = 10.f;
+	float LightConeDelta = 5.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float TotalSecondsInBattery = 60.f;
+	float TotalSecondsInBattery = 20.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float ChargingMultiplier = 6.f;
+	float ChargingMultiplier = 10.f;
 	UFUNCTION(BlueprintPure)
 	float GetBatteryPercent();
 	void HandleBatteryTick(float DeltaTime);
 	void Charging();
 	void DoneCharging();
-
+	UFUNCTION()
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 	//End of Light
 
 	//Combat
