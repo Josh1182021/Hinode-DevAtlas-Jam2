@@ -14,4 +14,10 @@ class HINODE_DEVATLAS_JAM2_API ASapphireLv1AIController : public AAIController
 {
 	GENERATED_BODY()
 	
+protected:
+    virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(EditAnywhere)
+	class UBehaviorTree* AIBehavior;
 };
