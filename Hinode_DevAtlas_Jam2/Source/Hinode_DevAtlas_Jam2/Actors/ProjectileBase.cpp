@@ -34,7 +34,7 @@ void AProjectileBase::BeginPlay()
 // Called every frame
 void AProjectileBase::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime);  
 
 }
 
