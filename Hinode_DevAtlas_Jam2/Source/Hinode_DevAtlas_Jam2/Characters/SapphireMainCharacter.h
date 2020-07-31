@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "SapphireMainCharacter.generated.h"
 
+class AProjectileBase;
+
 UCLASS()
 class HINODE_DEVATLAS_JAM2_API ASapphireMainCharacter : public APawn
 {
@@ -38,7 +40,7 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
 	class USpotLightComponent* LightSource;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class USceneComponent* MuzzlePoint;
+	class USceneComponent* ProjectileSpawnPoint;
 	//End of Character Components
 
 	//Movement
@@ -56,10 +58,23 @@ private:
 	float LargestLightAngle = 50.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
 	float LightConeDelta = 10.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
+	float TotalSecondsInBattery = 60.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
+	float ChargingMultiplier = 6.f;
 	UFUNCTION(BlueprintPure)
 	float GetBatteryPercent();
 	void HandleBatteryTick(float DeltaTime);
+	void Charging();
+	void DoneCharging();
+
 	//End of Light
 
+	//Shooting
 	void Fire();
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"));
+	TSubclassOf<AProjectileBase> ProjectileClass;
+	bool CanFire = true;
+	//End of Shooting
+
 };
