@@ -26,7 +26,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void SpawnEnemy(float SpawnDelay);
+	void SpawnEnemy();
+
+	UFUNCTION()
+	void SpawnEnemyCPP();
+	
+	// UFUNCTION()
+	// void Spawn();
 
 private:
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -35,5 +41,5 @@ private:
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<ASapphireLv1Enemy> EnemyClass;
 
-	float EnemySpawnDelay = 0;
+	// float EnemySpawnDelay = 3;
 };
