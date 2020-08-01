@@ -17,5 +17,5 @@ void ASapphireLv1AIController::BeginPlay()
     }
     RunBehaviorTree(AIBehavior);
 
-    GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), GetCharacter()->GetActorLocation());
+    //GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), GetCharacter()->GetActorLocation());
 }

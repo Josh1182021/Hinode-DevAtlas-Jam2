@@ -16,4 +16,6 @@ class HINODE_DEVATLAS_JAM2_API ASapphireGameMode : public AGameModeBase
 
 public:
 	void ActorDied(AActor* DeadActor);
+
+	void EndGame(bool bIsPlayerWinner);
 };
