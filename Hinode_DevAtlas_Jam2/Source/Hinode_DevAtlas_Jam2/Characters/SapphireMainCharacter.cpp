@@ -78,10 +78,14 @@ void ASapphireMainCharacter::MainCharacterDied()
 
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
 {
+	// UE_LOG(LogTemp, Warning, TEXT("MoveForward called %f"), AxisValue)
+	// UE_LOG(LogTemp, Log, TEXT("Is Charging: %s"), IsCharging ? TEXT("true") : TEXT("false"));
 	if (IsCharging == true)
 	{
+		// UE_LOG(LogTemp, Warning, TEXT("It thinks I am charging"));
 		return;
 	}
+	// UE_LOG(LogTemp, Warning, TEXT("Trying to add vector."));
 	AddActorLocalOffset(FVector(1.f, 0.f, 0.f) * AxisValue * Speed * GetWorld()->GetDeltaSeconds(), true);
 }
 void ASapphireMainCharacter::MoveRight(float AxisValue) 
@@ -136,8 +140,8 @@ void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime)
 	{
 		Battery = Battery - FMath::Clamp(((100.f/TotalSecondsInBattery) * DeltaTime), 0.f, 100.f);
 	}
-	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
-	LightSource->SetInnerConeAngle((Battery/100.f) * (LargestLightAngle - LightConeDelta));
+	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle + BaseAngle);
+	LightSource->SetInnerConeAngle((Battery/100.f) * (LargestLightAngle + BaseAngle - LightConeDelta));
 	// UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
 	// UE_LOG(LogTemp, Warning, TEXT("%f"), ((Battery/100.f) * LargestLightAngle));
 	
