@@ -195,6 +195,7 @@ void ASapphireMainCharacter::Fire()
 	}
 }
 
+
 void ASapphireMainCharacter::CheckIfDead() 
 {
 	if (Battery >= 2.f)

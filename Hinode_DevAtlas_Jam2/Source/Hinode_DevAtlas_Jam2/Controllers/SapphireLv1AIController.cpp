@@ -2,6 +2,8 @@
 
 
 #include "SapphireLv1AIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
+#include "GameFramework/Character.h"
 
 
 void ASapphireLv1AIController::BeginPlay() 
@@ -14,4 +16,6 @@ void ASapphireLv1AIController::BeginPlay()
         return;
     }
     RunBehaviorTree(AIBehavior);
+
+    GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), GetCharacter()->GetActorLocation());
 }
