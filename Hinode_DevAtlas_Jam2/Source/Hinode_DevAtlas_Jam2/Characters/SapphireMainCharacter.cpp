@@ -81,14 +81,6 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 void ASapphireMainCharacter::MainCharacterDied() 
 {
-	if (!DeathShake)
-	{
-		UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::MainCharacterDied has no refrence to DeathShake"));
-	}
-	else
-	{
-		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(DeathShake, 1);
-	}
 }
 
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
@@ -256,6 +248,15 @@ void ASapphireMainCharacter::CheckIfDead()
 	}
 	else
 	{
+		if (!DeathShake)
+		{
+			UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::CheckIfDead has no refrence to DeathShake"));
+		}
+		else
+		{
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(DeathShake, 1);
+		}
+		
 		UE_LOG(LogTemp, Warning, TEXT("Died."));
 		ASapphireGameMode* GameModeRef = Cast<ASapphireGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 		if (GameModeRef == nullptr)
