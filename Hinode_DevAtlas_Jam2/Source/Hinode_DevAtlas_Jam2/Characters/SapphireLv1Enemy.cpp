@@ -48,14 +48,14 @@ void ASapphireLv1Enemy::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 	{
 		return;
 	}
-	ASapphireMainCharacter* PlayerRef = Cast<ASapphireMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	ASapphireMainCharacter* PlayerRef = Cast<ASapphireMainCharacter>(OtherActor);
 	if(PlayerRef == nullptr)
 	{
 		return;
 	}
 	else
 	{
-	UGameplayStatics::ApplyDamage(OtherActor, Damage, Controller, this, DamageType);
-	Destroy();
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, Controller, this, DamageType);
+		Destroy();
 	}
 }
