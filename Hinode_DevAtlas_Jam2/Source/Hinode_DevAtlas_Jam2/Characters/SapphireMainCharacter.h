@@ -91,4 +91,13 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Sounds", meta = (AllowPrivateAccess = "true"));
 	class USoundBase* BackgroundMusic;
 	//End of Sound
+
+	//Camera Shake
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UCameraShake> CharacterHitShake;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UCameraShake> DeathShake;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UCameraShake> FireShake;
+	//End of Camera Shake
 };
