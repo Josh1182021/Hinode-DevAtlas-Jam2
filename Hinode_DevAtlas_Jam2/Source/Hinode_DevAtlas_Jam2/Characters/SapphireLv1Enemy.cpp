@@ -4,6 +4,8 @@
 #include "SapphireLv1Enemy.h"
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Hinode_DevAtlas_Jam2/Characters/SapphireMainCharacter.h"
+
 
 // Sets default values
 ASapphireLv1Enemy::ASapphireLv1Enemy()
@@ -46,7 +48,14 @@ void ASapphireLv1Enemy::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 	{
 		return;
 	}
+	ASapphireMainCharacter* PlayerRef = Cast<ASapphireMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	if(PlayerRef == nullptr)
+	{
+		return;
+	}
+	else
+	{
 	UGameplayStatics::ApplyDamage(OtherActor, Damage, Controller, this, DamageType);
-
 	Destroy();
+	}
 }

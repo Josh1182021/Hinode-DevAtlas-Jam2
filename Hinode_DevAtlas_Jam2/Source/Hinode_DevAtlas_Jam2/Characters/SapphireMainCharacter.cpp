@@ -136,8 +136,8 @@ void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime)
 	{
 		Battery = Battery - FMath::Clamp(((100.f/TotalSecondsInBattery) * DeltaTime), 0.f, 100.f);
 	}
-	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle);
-	LightSource->SetInnerConeAngle((Battery/100.f) * (LargestLightAngle - LightConeDelta));
+	LightSource->SetOuterConeAngle((Battery/100.f) * LargestLightAngle + BaseAngle);
+	LightSource->SetInnerConeAngle((Battery/100.f) * (LargestLightAngle + BaseAngle - LightConeDelta));
 	// UE_LOG(LogTemp, Warning, TEXT("%f"), Battery);
 	// UE_LOG(LogTemp, Warning, TEXT("%f"), ((Battery/100.f) * LargestLightAngle));
 	

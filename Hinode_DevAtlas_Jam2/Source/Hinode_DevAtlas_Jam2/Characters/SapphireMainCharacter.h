@@ -57,13 +57,15 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
 	float Battery = 100.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float LargestLightAngle = 90.f;
+	float LargestLightAngle = 80.f; //Added with BaseAngle
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float LightConeDelta = 5.f;
+	float LightConeDelta = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
-	float TotalSecondsInBattery = 20.f;
+	float TotalSecondsInBattery = 40.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
 	float ChargingMultiplier = 10.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Light", meta = (AllowPrivateAccess = "true"))
+	float BaseAngle = 10.f;
 	UFUNCTION(BlueprintPure)
 	float GetBatteryPercent();
 	void HandleBatteryTick(float DeltaTime);
