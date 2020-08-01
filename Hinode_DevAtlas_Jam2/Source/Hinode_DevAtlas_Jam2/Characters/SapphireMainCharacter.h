@@ -82,4 +82,13 @@ private:
 	bool IsCharging = false;
 	void CheckIfDead();
 	//End of Combat
+
+	//Sound
+	UPROPERTY(EditAnywhere, Category = "Sounds", meta = (AllowPrivateAccess = "true"));
+	class USoundBase* CharacterHitSound;
+	UPROPERTY(EditAnywhere, Category = "Sounds", meta = (AllowPrivateAccess = "true"));
+	class USoundBase* CharacterShootSound;
+	UPROPERTY(EditAnywhere, Category = "Sounds", meta = (AllowPrivateAccess = "true"));
+	class USoundBase* BackgroundMusic;
+	//End of Sound
 };

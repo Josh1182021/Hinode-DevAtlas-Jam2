@@ -5,7 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Hinode_DevAtlas_Jam2/Characters/SapphireMainCharacter.h"
-
+#include "Hinode_DevAtlas_Jam2/Actors/SapphireLv1EnemySpawner.h"
 
 // Sets default values
 ASapphireLv1Enemy::ASapphireLv1Enemy()
@@ -17,6 +17,15 @@ ASapphireLv1Enemy::ASapphireLv1Enemy()
 
 void ASapphireLv1Enemy::Died() 
 {
+	if(GetOwner())
+	{
+		ASapphireLv1EnemySpawner* Spawner = Cast<ASapphireLv1EnemySpawner>(GetOwner());
+		if(Spawner)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("got here"));
+			Spawner->SpawnEnemyCPP();
+		}
+	}
 	Destroy();
 }
 
@@ -56,6 +65,6 @@ void ASapphireLv1Enemy::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 	else
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, Controller, this, DamageType);
-		Destroy();
+		UGameplayStatics::ApplyDamage(this , Damage, Controller, this, DamageType);
 	}
 }

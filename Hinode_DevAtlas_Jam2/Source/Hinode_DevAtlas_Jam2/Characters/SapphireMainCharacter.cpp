@@ -43,7 +43,15 @@ ASapphireMainCharacter::ASapphireMainCharacter()
 void ASapphireMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (BackgroundMusic == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::BeginPlay has no valid reference to BackgroundMusic."));
+	}
+	else
+	{
+		UGameplayStatics::PlaySound2D(GetWorld(), BackgroundMusic);
+	}
 }
 
 // Called every frame
@@ -168,7 +176,15 @@ void ASapphireMainCharacter::DoneCharging()
 
 float ASapphireMainCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) 
 {
-	Battery = Battery - Damage;
+	Battery = Battery - (FMath::Min(Battery, Damage));
+	if (CharacterHitSound == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::TakeDamage has no valid reference to CharacterHitSound."));
+	}
+	else
+	{
+		UGameplayStatics::SpawnSoundAtLocation(GetWorld(), CharacterHitSound, CapsuleComponent->GetComponentLocation());
+	}
 	return Damage;
 }
 
@@ -190,6 +206,14 @@ void ASapphireMainCharacter::Fire()
 		}
 		else
 		{
+			if (CharacterShootSound == nullptr)
+			{
+				UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::Fire has no valid reference to CharacterShootSound."));
+			}
+			else
+			{
+				UGameplayStatics::SpawnSoundAtLocation(GetWorld(), CharacterShootSound, ProjectileSpawnPoint->GetComponentLocation());
+			}
 			FRotator ProjectileSpawnPointRotation = ProjectileSpawnPoint->GetComponentRotation();
 			FRotator ProjectileSpawnPointAjustedRotation = FRotator(0.f, ProjectileSpawnPointRotation.Yaw - 90.f, 0.f);
 			
