@@ -81,7 +81,14 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 void ASapphireMainCharacter::MainCharacterDied() 
 {
-	UE_LOG(LogTemp, Warning, TEXT("called by gamemode"));
+	if (!DeathShake)
+	{
+		UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::MainCharacterDied has no refrence to DeathShake"));
+	}
+	else
+	{
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(DeathShake, 1);
+	}
 }
 
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
@@ -185,6 +192,15 @@ float ASapphireMainCharacter::TakeDamage(float Damage, struct FDamageEvent const
 	{
 		UGameplayStatics::SpawnSoundAtLocation(GetWorld(), CharacterHitSound, CapsuleComponent->GetComponentLocation());
 	}
+
+	if (!CharacterHitShake)
+	{
+		UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::TakeDamage has no refrence to CharacterHitShake"));
+	}
+	else
+	{
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(CharacterHitShake, 1);
+	}
 	return Damage;
 }
 
@@ -213,6 +229,14 @@ void ASapphireMainCharacter::Fire()
 			else
 			{
 				UGameplayStatics::SpawnSoundAtLocation(GetWorld(), CharacterShootSound, ProjectileSpawnPoint->GetComponentLocation());
+			}
+			if (!FireShake)
+			{
+				UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::Fire has no refrence to FireShake"));
+			}
+			else
+			{
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(FireShake, 1);
 			}
 			FRotator ProjectileSpawnPointRotation = ProjectileSpawnPoint->GetComponentRotation();
 			FRotator ProjectileSpawnPointAjustedRotation = FRotator(0.f, ProjectileSpawnPointRotation.Yaw - 90.f, 0.f);
