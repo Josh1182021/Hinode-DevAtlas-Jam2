@@ -81,6 +81,7 @@ private:
 	TSubclassOf<AProjectileBase> ProjectileClass;
 	bool IsCharging = false;
 	void CheckIfDead();
+	bool bIsDead = false;
 	//End of Combat
 
 	//Sound
@@ -100,4 +101,6 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UCameraShake> FireShake;
 	//End of Camera Shake
+
+	void HandleRestart();
 };

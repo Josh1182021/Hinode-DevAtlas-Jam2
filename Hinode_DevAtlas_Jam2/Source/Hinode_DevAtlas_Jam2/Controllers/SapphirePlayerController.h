@@ -19,6 +19,18 @@ public:
 
     virtual void Tick(float DeltaTime) override;
 
+    virtual void GameHasEnded(class AActor *EndGameFocus = nullptr, bool bIsWinner = false) override;
+
 protected:
     virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(EditAnywhere)
+	float RestartDelay = 5.f;
+
+	FTimerHandle RestartTimer;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> LoseScreenClass;
+
 };
