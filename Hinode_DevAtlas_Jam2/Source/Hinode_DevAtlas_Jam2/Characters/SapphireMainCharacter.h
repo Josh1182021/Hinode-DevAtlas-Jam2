@@ -25,6 +25,9 @@ public:
 
 	void MainCharacterDied();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void SkipLevel();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -103,4 +106,5 @@ private:
 	//End of Camera Shake
 
 	void HandleRestart();
+	void HandleSkipLevel();
 };

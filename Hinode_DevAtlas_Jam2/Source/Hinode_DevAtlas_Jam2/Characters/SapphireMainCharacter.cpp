@@ -83,6 +83,7 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	PlayerInputComponent->BindAction(TEXT("Charging"), IE_Repeat, this, &ASapphireMainCharacter::Charging);
 	PlayerInputComponent->BindAction(TEXT("Charging"), IE_Released, this, &ASapphireMainCharacter::DoneCharging);
 	PlayerInputComponent->BindAction(TEXT("Restart"), IE_Pressed, this, &ASapphireMainCharacter::HandleRestart);
+	PlayerInputComponent->BindAction(TEXT("SkipLevel"), IE_Pressed, this, &ASapphireMainCharacter::HandleSkipLevel);
 
 }
 
@@ -296,4 +297,10 @@ void ASapphireMainCharacter::HandleRestart()
 {
 	APlayerController* PlayerControllerRef = Cast<APlayerController>(Controller);
 	PlayerControllerRef->APlayerController::RestartLevel();
+}
+
+void ASapphireMainCharacter::HandleSkipLevel() 
+{
+
+	SkipLevel();
 }
