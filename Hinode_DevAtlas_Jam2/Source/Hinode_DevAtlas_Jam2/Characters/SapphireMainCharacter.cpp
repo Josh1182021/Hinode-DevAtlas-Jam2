@@ -302,6 +302,5 @@ void ASapphireMainCharacter::HandleRestart()
 void ASapphireMainCharacter::HandleSkipLevel() 
 {
 	UE_LOG(LogTemp, Warning, TEXT("Skip."));
-	GetLevel
 	SkipLevel();
 }
