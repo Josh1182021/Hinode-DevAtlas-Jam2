@@ -38,5 +38,5 @@ void ASapphirePlayerController::GameHasEnded(class AActor *EndGameFocus, bool bI
         LoseScreen->AddToViewport();
     }
 
-    GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
+    // GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
 }
