@@ -301,6 +301,5 @@ void ASapphireMainCharacter::HandleRestart()
 
 void ASapphireMainCharacter::HandleSkipLevel() 
 {
-
 	SkipLevel();
 }
