@@ -5,6 +5,7 @@
 #include "Hinode_DevAtlas_Jam2/Characters/SapphireMainCharacter.h"
 #include "Hinode_DevAtlas_Jam2/Characters/SapphireLv1Enemy.h"
 #include "Hinode_DevAtlas_Jam2/Characters/SapphireLv2Enemy.h"
+#include "Hinode_DevAtlas_Jam2/Characters/SapphireLv3Enemy.h"
 #include "AIController.h"
 #include "GameFramework/Character.h"
 #include "EngineUtils.h"
@@ -34,6 +35,11 @@ void ASapphireGameMode::ActorDied(AActor* DeadActor)
     if (Lv2EnemyRef != nullptr)
     {
         Lv2EnemyRef->Died();
+    }
+    ASapphireLv3Enemy* Lv3EnemyRef = Cast<ASapphireLv3Enemy>(DeadActor);
+    if (Lv3EnemyRef != nullptr)
+    {
+        Lv3EnemyRef->Died();
     }
 
     // for (AAIController* AIController : TActorRange<ASapphireLv1AIController>(GetWorld()))

@@ -25,6 +25,9 @@ public:
 
 	void MainCharacterDied();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void SkipLevel();
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -102,5 +105,8 @@ private:
 	TSubclassOf<UCameraShake> FireShake;
 	//End of Camera Shake
 
+	//User Ease of Use
 	void HandleRestart();
+	void HandleSkipLevel();
+	//End of UserEase of Use
 };
