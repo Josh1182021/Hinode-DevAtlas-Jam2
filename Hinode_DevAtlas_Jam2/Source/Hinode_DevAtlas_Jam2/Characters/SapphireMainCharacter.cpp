@@ -2,14 +2,17 @@
 
 
 #include "SapphireMainCharacter.h"
+
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SpotLightComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+
 #include "Hinode_DevAtlas_Jam2/Controllers/SapphirePlayerController.h"
 #include "Hinode_DevAtlas_Jam2/Actors/ProjectileBase.h"
 #include "Hinode_DevAtlas_Jam2/GameModes/SapphireGameMode.h"
+
 #include "Math/UnrealMathUtility.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -44,6 +47,9 @@ void ASapphireMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Battery = 100.f;
+	bIsDead = false;
+
 	if (BackgroundMusic == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::BeginPlay has no valid reference to BackgroundMusic."));
@@ -76,18 +82,22 @@ void ASapphireMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ASapphireMainCharacter::Fire);
 	PlayerInputComponent->BindAction(TEXT("Charging"), IE_Repeat, this, &ASapphireMainCharacter::Charging);
 	PlayerInputComponent->BindAction(TEXT("Charging"), IE_Released, this, &ASapphireMainCharacter::DoneCharging);
+	PlayerInputComponent->BindAction(TEXT("Restart"), IE_Pressed, this, &ASapphireMainCharacter::HandleRestart);
 
 }
 
 void ASapphireMainCharacter::MainCharacterDied() 
 {
+	// DetachFromControllerPendingDestroy();
+	CapsuleComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	bIsDead = true;
 }
 
 void ASapphireMainCharacter::MoveForward(float AxisValue) 
 {
 	// UE_LOG(LogTemp, Warning, TEXT("MoveForward called %f"), AxisValue)
 	// UE_LOG(LogTemp, Log, TEXT("Is Charging: %s"), IsCharging ? TEXT("true") : TEXT("false"));
-	if (IsCharging == true)
+	if (IsCharging == true || bIsDead == true)
 	{
 		// UE_LOG(LogTemp, Warning, TEXT("It thinks I am charging"));
 		return;
@@ -97,7 +107,7 @@ void ASapphireMainCharacter::MoveForward(float AxisValue)
 }
 void ASapphireMainCharacter::MoveRight(float AxisValue) 
 {
-	if (IsCharging == true)
+	if (IsCharging == true || bIsDead == true)
 	{
 		return;
 	}
@@ -106,6 +116,11 @@ void ASapphireMainCharacter::MoveRight(float AxisValue)
 
 void ASapphireMainCharacter::PointAtMouse() 
 {
+	if (bIsDead == true)
+	{
+		return;
+	}
+	
     if (Controller == nullptr)
     {
         UE_LOG(LogTemp, Error, TEXT("ASapphireMainCharacter::PointAtMouse has no reference to Controller."));
@@ -156,6 +171,11 @@ void ASapphireMainCharacter::HandleBatteryTick(float DeltaTime)
 
 void ASapphireMainCharacter::Charging() 
 {
+	if (bIsDead == true)
+	{
+		return;
+	}
+	
 	IsCharging = true;
 	UE_LOG(LogTemp, Warning, TEXT("Charging"));
 	if (Battery <= 100.f && Battery >= 0.f)
@@ -199,6 +219,10 @@ float ASapphireMainCharacter::TakeDamage(float Damage, struct FDamageEvent const
 
 void ASapphireMainCharacter::Fire() 
 {
+	if (bIsDead == true)
+	{
+		return;
+	}
 	if (IsCharging == true)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Can't fire right now because we are charging."));
@@ -266,4 +290,10 @@ void ASapphireMainCharacter::CheckIfDead()
 		}
 		GameModeRef->ActorDied(this);
 	}
+}
+
+void ASapphireMainCharacter::HandleRestart() 
+{
+	APlayerController* PlayerControllerRef = Cast<APlayerController>(Controller);
+	PlayerControllerRef->APlayerController::RestartLevel();
 }
