@@ -1,0 +1,104 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Hinode_DevAtlas_Jam2 (Debug)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2 Mac Debug Build",
+			"program": "/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Binaries/Mac/UE4-Mac-Debug.app/Contents/MacOS/UE4-Mac-Debug",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2 (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2 Mac DebugGame Build",
+			"program": "/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Binaries/Mac/UE4-Mac-DebugGame.app/Contents/MacOS/UE4-Mac-DebugGame",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2 (Development)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2 Mac Development Build",
+			"program": "/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Binaries/Mac/UE4.app/Contents/MacOS/UE4",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2 (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2 Mac Shipping Build",
+			"program": "/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Binaries/Mac/UE4-Mac-Shipping.app/Contents/MacOS/UE4-Mac-Shipping",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2 (Test)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2 Mac Test Build",
+			"program": "/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Binaries/Mac/UE4-Mac-Test.app/Contents/MacOS/UE4-Mac-Test",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2Editor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2Editor Mac Debug Build",
+			"program": "/Users/Shared/Epic Games/UE_4.25/Engine/Binaries/Mac/UE4Editor-Mac-Debug.app/Contents/MacOS/UE4Editor-Mac-Debug",
+			"args": [
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2Editor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2Editor Mac DebugGame Build",
+			"program": "/Users/Shared/Epic Games/UE_4.25/Engine/Binaries/Mac/UE4Editor-Mac-DebugGame.app/Contents/MacOS/UE4Editor-Mac-DebugGame",
+			"args": [
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Hinode_DevAtlas_Jam2Editor (Development)",
+			"request": "launch",
+			"preLaunchTask": "Hinode_DevAtlas_Jam2Editor Mac Development Build",
+			"program": "/Users/Shared/Epic Games/UE_4.25/Engine/Binaries/Mac/UE4Editor.app/Contents/MacOS/UE4Editor",
+			"args": [
+				"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_4.25",
+			"type": "lldb"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "mono",
+			"request": "launch",
+			"program": "/Users/Shared/Epic Games/UE_4.25/Engine/Binaries/DotNET/UnrealBuildTool.exe",
+			"console": "internalConsole",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=\"/Users/Josh/Documents/GitHub/Hinode-DevAtlas-Jam2/Hinode_DevAtlas_Jam2/Hinode_DevAtlas_Jam2.uproject\"",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "/Users/Shared/Epic Games/UE_4.25"
+		}
+	]
+}
